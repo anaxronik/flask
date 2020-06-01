@@ -45,6 +45,36 @@ def post_detail_route(id):
     return render_template('post_detail.html', article=article)
 
 
+@app.route('/posts/<int:id>/delete')
+def delete_post_route(id):
+    print('=> New request on DELETE POST route, ID:', id)
+    article = Article.query.get(id)
+    try:
+        db.session.delete(article)
+        db.session.commit()
+        return redirect('/posts')
+    except:
+        return 'Ошибка при удалении поста'
+
+
+@app.route('/posts/<int:id>/edit',  methods=['POST', 'GET'])
+def edit_post_route(id):
+    print('=> New request on EDIT POST route, ID:', id)
+    article = Article.query.get(id)
+    if request.method == 'GET':
+        return render_template('edit_article.html', article=article)
+    elif request.method == 'POST':
+        article.title = request.form['title']
+        article.intro = request.form['intro']
+        article.text = request.form['text']
+        try:
+            db.session.commit()
+            return redirect('/posts')
+
+        except expression as identifier:
+            return 'Ошибка при редактировании'
+
+
 @app.route('/create-article', methods=['POST', 'GET'])
 def create_article_route():
     if request.method == 'POST':

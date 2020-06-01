@@ -6,4 +6,12 @@
   <hr />
   {{article.text}}
 </div>
+<div>
+  <a class="btn btn-danger" href="/posts/{{article.id}}/delete" role="button"
+    >Удалить</a
+  >
+  <a class="btn btn-success" href="/posts/{{article.id}}/edit" role="button"
+    >Редактировать</a
+  >
+</div>
 {% endblock body %}
