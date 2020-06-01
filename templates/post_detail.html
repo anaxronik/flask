@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block title %} Main page {% endblock title %}
+{%block body %}
+<h1 style="text-align: center;">{{article.title}}</h1>
+<div class="alert alert-info">
+  {{article.intro}}
+  <hr />
+  {{article.text}}
+</div>
+{% endblock body %}

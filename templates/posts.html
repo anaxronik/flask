@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block title %} Posts page {% endblock title %} {%
+block body %}
+<h2>Все статьи на сайте</h2>
+<div>
+  {% for article in articles %}
+  <div class="alert alert-info">
+    <div>
+      <h3>{{article.title }}</h3>
+    </div>
+    <hr />
+    <div>
+      <h5>{{article.intro }}</h5>
+    </div>
+    <div>
+      {{article.text }}
+    </div>
+    <hr />
+    <div>
+      <b style="float: right;">Дата создания: {{article.date.date()}}</b>
+    </div>
+    <div>
+      <a class="btn btn-primary" href="/posts/{{article.id}}" role="button"
+        >Подробнее</a
+      >
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock body %}
